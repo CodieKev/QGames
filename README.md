@@ -26,3 +26,11 @@ After each term the attacking and defending switches.
 + Board Arrangement:  
   ![](Quantum_Board_Run/Resource/Board_resized.jpg ) 
 
+## Authors
+
+* **Rohit Prasad** - [CodieKev](https://github.com/CodieKev) - [Rohit Prasad](https://www.linkedin.com/in/rohit-prasad-codie-5845b11a9/)
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

@@ -22,7 +22,7 @@ After each term the attacking and defending switches.
   - CCX
   - MCX (multiple controle x gate)
 + Circuit Arrangement:   
-  ![](Quantum_Board_Run/Resource/Circuit.jpg = 250x250)
+  ![](Quantum_Board_Run/Resource/Circuit _resized.jpg ) 
   
 
 

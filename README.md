@@ -5,7 +5,8 @@
 Game consists of 2 player trying to eliminate each other.  
 In each term, first the defending player is allowed to move on the board and after that the attacking player is allowed to place a bomb on the defender's board.  
 After this the board updates with the new position of defending player and if the bomb damages the player, health is reduced by one heart. Once the defender is out of all three hearts, the attacking player wins.
-After each turn, the attacking and defending players switch.
+After each turn, the attacking and defending players switch.  
+#### To play one can just run the .py file. (it also works with .pynb)
 ### Rules:
 + Defending Player is allowed to move in 2 different ways:
   - Classical : Here the  player can move to any of the 8 positions surrounding the current position (like a king in chess), and the position of the coin will show the predicted position of the player.

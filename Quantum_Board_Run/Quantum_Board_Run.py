@@ -12,6 +12,7 @@ import numpy as np
 import pygame
 from math import *
 import random
+import os
 
 
 # # Intializarion of Data and Constant
@@ -48,32 +49,30 @@ y_c = [y_c1,y_c2]
 y_gate=[y_gate_1,y_gate_2]
 x_cancle = 1.265*ymax
 y_cancle = [ymax*0.435,ymax*0.935]
-H = pygame.image.load(r'Resource\H.jpg')
-X = pygame.image.load(r'Resource\X.jpg')
-D = pygame.image.load(r'Resource\D.jpg')
-C = pygame.image.load(r'Resource\C.png')
-coin = pygame.image.load(r'Resource\coin.jpg')
-player1_image = pygame.image.load(r'Resource\player.png')
-player2_image = pygame.image.load(r'Resource\player.jpg')
-one_image = pygame.image.load(r'Resource\1.jpg')
-two_image = pygame.image.load(r'Resource\2.jpg')
-three_image = pygame.image.load(r'Resource\3.jpg')
-blur_full = pygame.image.load(r'Resource\Blur_Full.jpg')
-blur_half = pygame.image.load(r'Resource\Blur_Half.jpg')
-bomb = pygame.image.load(r'Resource\bomb.jpg')
-blast = pygame.image.load(r'Resource\blast.jpg')
-p1_w = pygame.image.load(r'Resource\p1_w.jpg')
-p2_w = pygame.image.load(r'Resource\p2_w.jpg')
-player_one_text = pygame.image.load(r'Resource\player_one.jpg')
-player_two_text = pygame.image.load(r'Resource\player_two.jpg')
-heart = pygame.image.load(r'Resource\heart.jpg')
 
+### Image_Import###
 
+H = pygame.image.load(os.path.join('Resource', 'H.jpg'))
+X = pygame.image.load(os.path.join('Resource','X.jpg'))
+D = pygame.image.load(os.path.join('Resource','D.jpg'))
+C = pygame.image.load(os.path.join('Resource','C.png'))
+coin = pygame.image.load(os.path.join('Resource','coin.jpg'))
+player1_image = pygame.image.load(os.path.join('Resource','player.png'))
+player2_image = pygame.image.load(os.path.join('Resource','player.jpg'))
+one_image = pygame.image.load(os.path.join('Resource','1.jpg'))
+two_image = pygame.image.load(os.path.join('Resource','2.jpg'))
+three_image = pygame.image.load(os.path.join('Resource','3.jpg'))
+blur_full = pygame.image.load(os.path.join('Resource','Blur_Full.jpg'))
+blur_half = pygame.image.load(os.path.join('Resource','Blur_Half.jpg'))
+bomb = pygame.image.load(os.path.join('Resource','bomb.jpg'))
+blast = pygame.image.load(os.path.join('Resource','blast.jpg'))
+p1_w = pygame.image.load(os.path.join('Resource','p1_w.jpg'))
+p2_w = pygame.image.load(os.path.join('Resource','p2_w.jpg'))
+player_one_text = pygame.image.load(os.path.join('Resource','player_one.jpg'))
+player_two_text = pygame.image.load(os.path.join('Resource','player_two.jpg'))
+heart = pygame.image.load(os.path.join('Resource','heart.jpg'))
 
-
-
-
-
+### Image_Resize
 
 edge = int(0.07*ymax)
 H = pygame.transform.scale(H, (edge, edge))
@@ -96,10 +95,7 @@ player_one_text = pygame.transform.scale(player_one_text, (int(0.25*ymax), int(0
 player_two_text = pygame.transform.scale(player_two_text, (int(0.25*ymax), int(0.035*ymax)))
 heart = pygame.transform.scale(heart, (int(0.03*ymax), int(0.03*ymax)))
 
-
-
-
-
+### Making List/tupels/grids So that its easire to get the image corrosponding to specific player
 p_w = [p2_w,p1_w]
 countdown_image = [three_image,two_image,one_image]
 player_image = [player1_image,player2_image]
@@ -181,6 +177,7 @@ def Structure():
 # In[4]:
 
 
+### It Records and applies all the circuit part of the intraction wrt the position of defending player ###
 def Gate_Intraction_part1(player_active):
     #gate = 0
     global Gate
@@ -265,6 +262,7 @@ def Gate_Intraction_part1(player_active):
 # In[5]:
 
 
+### It Records and applies all the circuit part of the intraction wrt the bomb of attacking player ###
 def Gate_Intraction_part2(player_active):
     #gate = 0
     global Gate
@@ -575,7 +573,7 @@ def health_and_text():
 
 # # Game Run
 
-# In[23]:
+# In[22]:
 
 
 player_mat= [np.zeros((4,4)),np.zeros((4,4))]
@@ -705,10 +703,4 @@ while run:
             
     pygame.display.update()
 pygame.quit()
-
-
-# In[ ]:
-
-
-
 

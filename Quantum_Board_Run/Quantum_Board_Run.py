@@ -676,13 +676,18 @@ while run:
         check_3+=1
         check_4 = 0
     if check_3 == 11:
-        health_and_text()
-        player_show_part1(player_defence,player_attack)
-        player_show_part2(player_defence,player_attack)
-        Blast_Position(blast_cord,player_defence,player_attack)
         check_4+=1
-        if check_4 >150 and check_4%100<50:
+        if check_4<100:
+            health_and_text()
+            player_show_part1(player_defence,player_attack)
+            player_show_part2(player_defence,player_attack)
+            Blast_Position(blast_cord,player_defence,player_attack)
+        if 100<=check_4<=200:
+            health_and_text()
+            player_show_part1(player_defence,player_attack)
+            player_show_part2(player_defence,player_attack)
             
+        if check_4 >250 and check_4%100<50:            
             finish_term(player_defence,blast_cord)
     if check_3 ==12:
         win.blit(blur_full, (0, 0))

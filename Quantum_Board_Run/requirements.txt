@@ -1,0 +1,6 @@
+This program has been built on:
+
+Python Version: 3.7.1
+Qiskit Version: 0.14.2
+pygame Version: 2.0.1
+

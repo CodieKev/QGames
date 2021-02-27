@@ -575,7 +575,7 @@ def health_and_text():
 
 # # Game Run
 
-# In[22]:
+# In[23]:
 
 
 player_mat= [np.zeros((4,4)),np.zeros((4,4))]
@@ -587,7 +587,7 @@ temp_mat = 3*np.ones((4,4))
 check_1 = True
 check_3 = 0
 check_4 = 0
-Turn = random.randint(1,2)
+Turn = 1
 player1_pos = [0,0]
 player2_pos = [0,0]
 player_pos=[player1_pos , player2_pos]
@@ -687,7 +687,8 @@ while run:
             player_show_part1(player_defence,player_attack)
             player_show_part2(player_defence,player_attack)
             
-        if check_4 >250 and check_4%100<50:            
+        if check_4 >250 and check_4%100<50:
+            
             finish_term(player_defence,blast_cord)
     if check_3 ==12:
         win.blit(blur_full, (0, 0))
@@ -704,4 +705,10 @@ while run:
             
     pygame.display.update()
 pygame.quit()
+
+
+# In[ ]:
+
+
+
 

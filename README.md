@@ -4,12 +4,12 @@
 
 Game consists of 2 player trying to eliminate each other.  
 In each term, first the defending player is allowed to move on the board and after that the attacking player is allowed to place a bomb on the defender's board.  
-After this the board updates with the new position of defending player and if the bomb damages him, his health is reduced by one heart. Once the defender is out of all three heart, the attacking player wins.
+After this the board updates with the new position of defending player and if the bomb damages the player, health is reduced by one heart. Once the defender is out of all three hearts, the attacking player wins.
 After each turn, the attacking and defending players switch.
 ### Rules:
 + Defending Player is allowed to move in 2 different ways:
-  - Classical : Here the  player can move to any of the 8 positions surrounding him (like a king in chess), and the position of the coin will show the predicted position of the player.
-  - Quantum : Here the player is allowed to make a superposition of his position (denoted by the coin) keeping in mind that the current position should be in the superposition. And the player's position will be updated according to the collapse of his superposition state.
+  - Classical : Here the  player can move to any of the 8 positions surrounding the current position (like a king in chess), and the position of the coin will show the predicted position of the player.
+  - Quantum : Here the player is allowed to make a superposition of the position (denoted by the coin) keeping in mind that the current position should be in the superposition. And the player's position will be updated according to the collapse of the superposition state.
 + Attacking Player can place the bomb only at one of the blocks on opponent's board and as there is no superposition only "X" gate is permitted to used.
 + The Bomb explodes in a way that it damages the board with a "+" sign and if the player is in that position, player will receive the damage. 
 + After the selection of the state in any of the defending and attacking cases, one should press enter to fix the state and then after that press enter to strt the count down for the second player's turn.

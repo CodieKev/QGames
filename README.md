@@ -25,7 +25,7 @@ After each term the attacking and defending switches.
   ![](Quantum_Board_Run/Resource/Circuit_resized.jpg )  
 + Board Arrangement:  
   ![](Quantum_Board_Run/Resource/Board_resized.jpg ) 
-
+### Its my first try. Feedback and Modifications are welcomed. Thanks for visiting.
 ## Authors
 
 * **Rohit Prasad** - [CodieKev](https://github.com/CodieKev) - [Rohit Prasad](https://www.linkedin.com/in/rohit-prasad-codie-5845b11a9/)

@@ -12,5 +12,6 @@ After each term the attacking and defending switches.
   - Quantum : Here player is allowed to make a superposition of his position (denoted by the coin) keeping in mind that the current position should be in the superposition. And       the player position will be updated according to the collaps of his superposition state.
 + Attacking Player can place the bomb only at one of the blocks on opponents board and as there is no superposition only "X" gate is permited to use.
 + After the selection of the state in any of the defending and attacking cases one should press enter to fix the state and then press and after that presses enter to state the count down for the second players turn.
++ While making the state remember that comtrole gate costs much more then the single qubit gates so to compensate for that if you choose to apply controle gate the whole collumn will be unusable for any other gates.
 
 

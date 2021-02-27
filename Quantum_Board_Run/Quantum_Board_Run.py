@@ -3,7 +3,7 @@
 
 # # Imports
 
-# In[24]:
+# In[1]:
 
 
 from qiskit import QuantumRegister, ClassicalRegister
@@ -11,11 +11,12 @@ from qiskit import QuantumCircuit, execute, Aer
 import numpy as np
 import pygame
 from math import *
+import random
 
 
 # # Intializarion of Data and Constant
 
-# In[175]:
+# In[2]:
 
 
 xmin = ymin = 0
@@ -63,6 +64,11 @@ bomb = pygame.image.load(r'Resource\bomb.jpg')
 blast = pygame.image.load(r'Resource\blast.jpg')
 p1_w = pygame.image.load(r'Resource\p1_w.jpg')
 p2_w = pygame.image.load(r'Resource\p2_w.jpg')
+player_one_text = pygame.image.load(r'Resource\player_one.jpg')
+player_two_text = pygame.image.load(r'Resource\player_two.jpg')
+heart = pygame.image.load(r'Resource\heart.jpg')
+
+
 
 
 
@@ -86,6 +92,10 @@ bomb = pygame.transform.scale(bomb, (edge, edge))
 blast = pygame.transform.scale(blast, (edge, edge))
 p1_w = pygame.transform.scale(p1_w, (edge*8, edge*8))
 p2_w = pygame.transform.scale(p2_w, (edge*8, edge*8))
+player_one_text = pygame.transform.scale(player_one_text, (int(0.25*ymax), int(0.035*ymax)))
+player_two_text = pygame.transform.scale(player_two_text, (int(0.25*ymax), int(0.035*ymax)))
+heart = pygame.transform.scale(heart, (int(0.03*ymax), int(0.03*ymax)))
+
 
 
 
@@ -111,7 +121,7 @@ for i in range(2):
 
 # # Structure of the Board
 
-# In[4]:
+# In[3]:
 
 
 def Structure():
@@ -168,7 +178,7 @@ def Structure():
 
 # # Important Functions
 
-# In[5]:
+# In[4]:
 
 
 def Gate_Intraction_part1(player_active):
@@ -252,7 +262,7 @@ def Gate_Intraction_part1(player_active):
     return()
 
 
-# In[6]:
+# In[5]:
 
 
 def Gate_Intraction_part2(player_active):
@@ -309,7 +319,7 @@ def Gate_Intraction_part2(player_active):
     return()
 
 
-# In[7]:
+# In[6]:
 
 
 def Coin_Position(player_active):
@@ -326,7 +336,7 @@ def Coin_Position(player_active):
     return()
 
 
-# In[8]:
+# In[7]:
 
 
 def circuit(mat):
@@ -349,7 +359,7 @@ def circuit(mat):
     return(qc)
 
 
-# In[9]:
+# In[8]:
 
 
 def result(circuit,counts):
@@ -362,7 +372,7 @@ def result(circuit,counts):
     return(result)
 
 
-# In[10]:
+# In[9]:
 
 
 def val(result):
@@ -375,7 +385,7 @@ def val(result):
     return(p)
 
 
-# In[11]:
+# In[10]:
 
 
 def position_check(bool_grid,pos):
@@ -391,7 +401,7 @@ def position_check(bool_grid,pos):
     
 
 
-# In[12]:
+# In[11]:
 
 
 def Coin_pos_Check(player_active):
@@ -408,7 +418,7 @@ def Coin_pos_Check(player_active):
     
 
 
-# In[13]:
+# In[12]:
 
 
 def player_show_part1(player_active,player_passive):
@@ -418,7 +428,7 @@ def player_show_part1(player_active,player_passive):
     win.blit(player_image[player_passive-1], (coord_use_passive[0][player_pos[player_passive-1][0]]+0.025*ymax, coord_use_passive[1][player_pos[player_passive-1][1]]+0.025*ymax))
 
 
-# In[14]:
+# In[13]:
 
 
 def player_show_part2(player_active,player_passive):
@@ -428,7 +438,7 @@ def player_show_part2(player_active,player_passive):
     win.blit(player_image[player_passive-1], (coord_use_passive[0][player_pos[player_passive-1][0]]+0.025*ymax, coord_use_passive[1][player_pos[player_passive-1][1]]+0.025*ymax))
 
 
-# In[15]:
+# In[14]:
 
 
 def Bomb_Position(player_active,player_passive):
@@ -445,7 +455,7 @@ def Bomb_Position(player_active,player_passive):
     return()
 
 
-# In[102]:
+# In[15]:
 
 
 def Blast_Position(blast_end,player_active,player_passive):
@@ -457,7 +467,7 @@ def Blast_Position(blast_end,player_active,player_passive):
     return()
 
 
-# In[103]:
+# In[16]:
 
 
 def blast_pos_list(player_passive):
@@ -480,7 +490,7 @@ def blast_pos_list(player_passive):
     
 
 
-# In[104]:
+# In[17]:
 
 
 def Bomb_Position_end(player_active,player_passive):
@@ -496,7 +506,7 @@ def Bomb_Position_end(player_active,player_passive):
     return()
 
 
-# In[133]:
+# In[18]:
 
 
 def bomb_exit():
@@ -512,7 +522,7 @@ def bomb_exit():
         check_3 = 7
 
 
-# In[106]:
+# In[19]:
 
 
 def Player_updated_pos(player_active):
@@ -524,18 +534,19 @@ def Player_updated_pos(player_active):
     
 
 
-# In[172]:
+# In[20]:
 
 
 def finish_term(player_active,blast_cord):
-    global Turn , check_3,check_4,player_mat,bool_grid 
-    if player_pos[player_active-1] in blast_cord:
-        win.blit(p_w[player_active-1], (xmax/2-4*edge,ymax/2-4*edge))
-            
+    global Turn , check_3,check_4,player_mat,bool_grid ,health
+    if player_pos[player_active-1] in blast_cord and health[player_active-1]==1:
+        win.blit(p_w[player_active-1], (xmax/2-4*edge,ymax/2-4*edge))  
     else:
+        if player_pos[player_active-1] in blast_cord:
+            health[player_active-1] -=1
         Turn = (Turn)%2+1
         player_mat= [np.zeros((4,4)),np.zeros((4,4))]
-        check_3 = 0
+        check_3 += 1
         check_4 = 0
         bool_grid = np.array([0]*16)
         bool_grid = bool_grid.reshape(4, 4)
@@ -543,9 +554,28 @@ def finish_term(player_active,blast_cord):
     return()
 
 
+# In[21]:
+
+
+def health_and_text():
+    global health
+    win.blit(player_one_text, (0,5))
+    win.blit(player_one_text, (0,ymax/2+5))
+    win.blit(player_two_text, (xmax-0.26*ymax,5))
+    win.blit(player_two_text, (xmax-0.26*ymax,ymax/2+5))
+    for i in range(len(health)):
+        for j in range(health[i]):
+                win.blit(heart, (((0.27*ymax+j*0.05*ymax)*abs(i-1))+i*(xmax-0.32*ymax-j*0.05*ymax),7))
+                win.blit(heart, (((0.27*ymax+j*0.05*ymax)*abs(i-1))+i*(xmax-0.32*ymax-j*0.05*ymax),ymax/2+7))
+
+
+    
+    
+
+
 # # Game Run
 
-# In[178]:
+# In[22]:
 
 
 player_mat= [np.zeros((4,4)),np.zeros((4,4))]
@@ -557,10 +587,13 @@ temp_mat = 3*np.ones((4,4))
 check_1 = True
 check_3 = 0
 check_4 = 0
-Turn = 1
+Turn = random.randint(1,2)
 player1_pos = [0,0]
 player2_pos = [0,0]
 player_pos=[player1_pos , player2_pos]
+health = [3,3]
+
+
 pygame.init()
 win = pygame.display.set_mode((int(xmax),int(ymax)))
 pygame.display.set_caption("QGame_1")
@@ -591,21 +624,24 @@ while run:
         Coin_Position(player_defence)
         #Player_updated_pos(player_active)
         Coin_pos_Check(player_defence)
+        health_and_text()
         win.blit(blur_half, (0, (player_attack-1)*ymax/2+5))
+        check_4=0
     if check_3 ==3:
         win.blit(blur_full, (0, 0))
-        if check_4 <100:
+        if check_4 <70:
             win.blit(countdown_image[0], (xmax/2-edge, ymax/2-edge))
-        if 100<=check_4 <200:
+        if 70<=check_4 <140:
             win.blit(countdown_image[1], (xmax/2-edge, ymax/2-edge))
-        if 200<=check_4 <300:
+        if 140<=check_4 <210:
             win.blit(countdown_image[2], (xmax/2-edge, ymax/2-edge))
-        if check_4 == 300:
+        if check_4 == 210:
             check_3 = 4
         check_4 +=1
         check_1 = True
        
     if 4<=check_3 <7:
+        health_and_text()
         win.blit(blur_half, (0, (player_defence-1)*ymax/2+5))
         player_show_part2(player_defence,player_attack)
         Gate_Intraction_part2(player_attack)
@@ -614,13 +650,13 @@ while run:
         check_4 = 0
     if check_3 ==7:
         win.blit(blur_full, (0, 0))
-        if check_4 <100:
+        if check_4 <70:
             win.blit(countdown_image[0], (xmax/2-edge, ymax/2-edge))
-        if 100<=check_4 <200:
+        if 70<=check_4 <140:
             win.blit(countdown_image[1], (xmax/2-edge, ymax/2-edge))
-        if 200<=check_4 <300:
+        if 140<=check_4 <210:
             win.blit(countdown_image[2], (xmax/2-edge, ymax/2-edge))
-        if check_4 == 300:
+        if check_4 == 210:
             check_3 = 8
         check_4 +=1
     if check_3==8:
@@ -628,6 +664,7 @@ while run:
         check_3 += 1
         check_4 = 0
     if check_3==9:
+        health_and_text()
         player_show_part1(player_defence,player_attack)
         player_show_part2(player_defence,player_attack)
         Bomb_Position_end(player_defence,player_attack)
@@ -639,23 +676,27 @@ while run:
         check_3+=1
         check_4 = 0
     if check_3 == 11:
+        health_and_text()
         player_show_part1(player_defence,player_attack)
         player_show_part2(player_defence,player_attack)
-        #Blast_Position(player_defence,player_attack)
         Blast_Position(blast_cord,player_defence,player_attack)
         check_4+=1
-        if check_4 >100 and check_4%100<50:
+        if check_4 >150 and check_4%100<50:
             
             finish_term(player_defence,blast_cord)
+    if check_3 ==12:
+        win.blit(blur_full, (0, 0))
+        if check_4 <70:
+            win.blit(countdown_image[0], (xmax/2-edge, ymax/2-edge))
+        if 70<=check_4 <140:
+            win.blit(countdown_image[1], (xmax/2-edge, ymax/2-edge))
+        if 140<=check_4 <210:
+            win.blit(countdown_image[2], (xmax/2-edge, ymax/2-edge))
+        if check_4 == 210:
+            check_3 = 0
+        check_4 +=1
+        check_1 = True
             
-            
-
     pygame.display.update()
 pygame.quit()
-
-
-# In[ ]:
-
-
-
 

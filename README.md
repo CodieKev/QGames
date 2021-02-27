@@ -21,5 +21,11 @@ After each term the attacking and defending switches.
   - CX
   - CCX
   - MCX (multiple controle x gate)
++ Circuit Arrangement:
 
+
+
+
+
++Board Arrangement:
 

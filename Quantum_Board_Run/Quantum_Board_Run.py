@@ -3,7 +3,7 @@
 
 # # Imports
 
-# In[1]:
+# In[4]:
 
 
 from qiskit import QuantumRegister, ClassicalRegister
@@ -15,9 +15,9 @@ import random
 import os
 
 
-# # Intializarion of Data and Constant
+# # Intialization of Data and Constant
 
-# In[2]:
+# In[5]:
 
 
 xmin = ymin = 0
@@ -121,7 +121,7 @@ for i in range(2):
 
 # # Structure of the Board
 
-# In[23]:
+# In[6]:
 
 
 def Structure():
@@ -188,7 +188,7 @@ def Structure():
 
 # # Important Functions
 
-# In[4]:
+# In[7]:
 
 
 ### It Records and applies all the circuit part of the intraction wrt the position of defending player ###
@@ -273,7 +273,7 @@ def Gate_Intraction_part1(player_active):
     return()
 
 
-# In[5]:
+# In[8]:
 
 
 ### It Records and applies all the circuit part of the intraction wrt the bomb of attacking player ###
@@ -331,7 +331,7 @@ def Gate_Intraction_part2(player_active):
     return()
 
 
-# In[6]:
+# In[9]:
 
 
 def Coin_Position(player_active):
@@ -348,7 +348,7 @@ def Coin_Position(player_active):
     return()
 
 
-# In[7]:
+# In[10]:
 
 
 def circuit(mat):
@@ -374,7 +374,7 @@ def circuit(mat):
     return(qc)
 
 
-# In[8]:
+# In[11]:
 
 
 def result(circuit,counts):
@@ -387,7 +387,7 @@ def result(circuit,counts):
     return(result)
 
 
-# In[9]:
+# In[12]:
 
 
 def val(result):
@@ -400,15 +400,16 @@ def val(result):
     return(p)
 
 
-# In[10]:
+# In[36]:
 
 
 def position_check(bool_grid,pos):
     check_2 = False
     for i in range(-1,2):
         for j in range(-1,2):
-            if -1<pos[0]-i<4 and -1<pos[1]-j<4:
-                if bool_grid[pos[0]-i,pos[1]-j] == 1 and i+j+i*j!=0:
+            if -1<pos[0]-i<4 or -1<pos[1]-j<4:
+                
+                if bool_grid[pos[1]-i,pos[0]-j] == 1 and i+j+i*j!=0:
                     check_2 = True
                     break
     return((bool_grid[pos[1],pos[0]] ==1 and len(np.where(bool_grid==1)[0])!=1) or check_2 and len(np.where(bool_grid==1)[0])==1)
@@ -416,7 +417,7 @@ def position_check(bool_grid,pos):
     
 
 
-# In[11]:
+# In[34]:
 
 
 def Coin_pos_Check(player_active):
@@ -433,7 +434,7 @@ def Coin_pos_Check(player_active):
     
 
 
-# In[12]:
+# In[15]:
 
 
 def player_show_part1(player_active,player_passive):
@@ -443,7 +444,7 @@ def player_show_part1(player_active,player_passive):
     win.blit(player_image[player_passive-1], (coord_use_passive[0][player_pos[player_passive-1][0]]+0.025*ymax, coord_use_passive[1][player_pos[player_passive-1][1]]+0.025*ymax))
 
 
-# In[13]:
+# In[16]:
 
 
 def player_show_part2(player_active,player_passive):
@@ -453,7 +454,7 @@ def player_show_part2(player_active,player_passive):
     win.blit(player_image[player_passive-1], (coord_use_passive[0][player_pos[player_passive-1][0]]+0.025*ymax, coord_use_passive[1][player_pos[player_passive-1][1]]+0.025*ymax))
 
 
-# In[14]:
+# In[17]:
 
 
 def Bomb_Position(player_active,player_passive):
@@ -470,7 +471,7 @@ def Bomb_Position(player_active,player_passive):
     return()
 
 
-# In[15]:
+# In[18]:
 
 
 def Blast_Position(blast_end,player_active,player_passive):
@@ -482,7 +483,7 @@ def Blast_Position(blast_end,player_active,player_passive):
     return()
 
 
-# In[16]:
+# In[19]:
 
 
 def blast_pos_list(player_passive):
@@ -505,7 +506,7 @@ def blast_pos_list(player_passive):
     
 
 
-# In[17]:
+# In[20]:
 
 
 def Bomb_Position_end(player_active,player_passive):
@@ -521,7 +522,7 @@ def Bomb_Position_end(player_active,player_passive):
     return()
 
 
-# In[18]:
+# In[21]:
 
 
 def bomb_exit():
@@ -537,7 +538,7 @@ def bomb_exit():
         check_3 = 7
 
 
-# In[19]:
+# In[22]:
 
 
 def Player_updated_pos(player_active):
@@ -549,7 +550,7 @@ def Player_updated_pos(player_active):
     
 
 
-# In[20]:
+# In[23]:
 
 
 def finish_term(player_active,blast_cord):
@@ -569,7 +570,7 @@ def finish_term(player_active,blast_cord):
     return()
 
 
-# In[21]:
+# In[24]:
 
 
 def health_and_text():
@@ -590,7 +591,7 @@ def health_and_text():
 
 # # Game Run
 
-# In[22]:
+# In[37]:
 
 
 player_mat= [np.zeros((4,4)),np.zeros((4,4))]
@@ -720,6 +721,15 @@ while run:
             
     pygame.display.update()
 pygame.quit()
+
+
+# In[27]:
+
+
+for i in range(-1,2):
+    for j in range(-1,2):
+        if i+j+i*j==0:
+            print(i,j)
 
 
 # In[ ]:

@@ -9,7 +9,8 @@ After each turn, the attacking and defending players switch.
 #### To play one can just run the .py file. (it also works with .pynb)
 ### Rules:
 + Defending Player is allowed to move in 2 different ways:
-  - Classical : Here the  player can move to any of the 8 positions surrounding the current position (like a king in chess), and the position of the coin will show the predicted position of the player.
+  - Classical : Here the  player can move to any of the 8 positions surrounding the current position (like a king in chess), and the position of the coin will show the predicted position of the player.  
+      ![](Quantum_Board_Run/Resource/classical_resized.jpg )
   - Quantum : Here the player is allowed to make a superposition of the position (denoted by the coin) keeping in mind that the current position should be in the superposition. And the player's position will be updated according to the collapse of the superposition state.
 + Attacking Player can place the bomb only at one of the blocks on opponent's board and as there is no superposition only "X" gate is permitted to used.
 + The Bomb explodes in a way that it damages the board with a "+" sign and if the player is in that position, player will receive the damage. 

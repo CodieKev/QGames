@@ -28,7 +28,12 @@ After each turn, the attacking and defending players switch.
 + Circuit Arrangement:   
   ![](Quantum_Board_Run/Resource/Circuit_resized.jpg )  
 + Board Arrangement:  
-  ![](Quantum_Board_Run/Resource/Board_resized.jpg ) 
+  ![](Quantum_Board_Run/Resource/Board_resized.jpg )   
+  
+  
+[Demo Run](Quantum_Board_Run/Resource/Quantum_Board_Run_Demo.mp4)
+  
+
 ### Its my first try. Feedback and Modifications are welcomed. Thanks for visiting.
 ## Authors
 

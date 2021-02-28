@@ -685,7 +685,7 @@ while run:
             player_show_part1(player_defence,player_attack)
             player_show_part2(player_defence,player_attack)
             
-        if check_4 >250 and check_4%100<50:
+        if check_4 >200 and check_4%100<50:
             
             finish_term(player_defence,blast_cord)
     if check_3 ==12:

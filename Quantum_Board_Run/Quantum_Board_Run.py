@@ -71,6 +71,8 @@ p2_w = pygame.image.load(os.path.join('Resource','p2_w.jpg'))
 player_one_text = pygame.image.load(os.path.join('Resource','player_one.jpg'))
 player_two_text = pygame.image.load(os.path.join('Resource','player_two.jpg'))
 heart = pygame.image.load(os.path.join('Resource','heart.jpg'))
+board = pygame.image.load(os.path.join('Resource','Board.jpg'))
+
 
 ### Image_Resize
 
@@ -94,6 +96,8 @@ p2_w = pygame.transform.scale(p2_w, (edge*8, edge*8))
 player_one_text = pygame.transform.scale(player_one_text, (int(0.25*ymax), int(0.035*ymax)))
 player_two_text = pygame.transform.scale(player_two_text, (int(0.25*ymax), int(0.035*ymax)))
 heart = pygame.transform.scale(heart, (int(0.03*ymax), int(0.03*ymax)))
+board = pygame.transform.scale(board, (int(edge*6.5), int(edge*6.5)))
+
 
 ### Making List/tupels/grids So that its easire to get the image corrosponding to specific player
 p_w = [p2_w,p1_w]
@@ -117,10 +121,20 @@ for i in range(2):
 
 # # Structure of the Board
 
-# In[3]:
+# In[23]:
 
 
 def Structure():
+    
+    ### Comment out these 4 codes to remove the state show in each blocks ###
+    
+    #win.blit(board, (0, 0.05*ymax))
+    #win.blit(board, (0.45*ymax, 0.05*ymax))
+    #win.blit(board, (0, 0.55*ymax))
+    #win.blit(board, (0.45*ymax, 0.55*ymax))
+    
+    ### Comment out above 4 codes to remove the state show in each blocks ###
+    
     
     pygame.draw.line(win, (0,0,0), (0, ymax/2),(xmax,ymax/2), 2)   
     pygame.draw.line(win, (0,0,0), (d_x,p_y),(d_x,ymax/2), 5)
@@ -351,7 +365,10 @@ def circuit(mat):
             else:
                 qc.ch(temp_const_3,temp_const_1)
         if len(temp_const_2) != 0:
-            qc.mcx(temp_const_3,temp_const_2)
+            if len(temp_const_3) != 0:
+                qc.mcx(temp_const_3,temp_const_2)
+            else:
+                qc.x(temp_const_2)
         
     qc.measure([0,1,2,3],[0,1,2,3])
     return(qc)
@@ -703,4 +720,10 @@ while run:
             
     pygame.display.update()
 pygame.quit()
+
+
+# In[ ]:
+
+
+
 

@@ -34,7 +34,7 @@ After each turn, the attacking and defending players switch.
   
 [Demo Run](Quantum_Board_Run/Resource/Quantum_Board_Run_Demo.mp4)
 ### Last Update:
-+ Added a CLick Button for moving forward in game. Enter and click on that button both works fine.
++ Added a Click Button for moving forward in game. Enter and click on that button both works fine.
 ### PLans for next update:
 + Adding a welcome screen 
 + Adding a home screen 

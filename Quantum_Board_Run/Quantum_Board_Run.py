@@ -72,6 +72,9 @@ player_one_text = pygame.image.load(os.path.join('Resource','player_one.jpg'))
 player_two_text = pygame.image.load(os.path.join('Resource','player_two.jpg'))
 heart = pygame.image.load(os.path.join('Resource','heart.jpg'))
 board = pygame.image.load(os.path.join('Resource','Board.jpg'))
+state_fix = pygame.image.load(os.path.join('Resource','Blur_Half_state_fix.jpg'))
+round_end = pygame.image.load(os.path.join('Resource','Blur_Half_next_player.jpg'))
+
 
 
 ### Image_Resize
@@ -97,6 +100,8 @@ player_one_text = pygame.transform.scale(player_one_text, (int(0.25*ymax), int(0
 player_two_text = pygame.transform.scale(player_two_text, (int(0.25*ymax), int(0.035*ymax)))
 heart = pygame.transform.scale(heart, (int(0.03*ymax), int(0.03*ymax)))
 board = pygame.transform.scale(board, (int(edge*6.5), int(edge*6.5)))
+state_fix = pygame.transform.scale(state_fix, (int(xmax/3), int(edge*2)))
+round_end = pygame.transform.scale(round_end, (int(xmax/3), int(edge*2)))
 
 
 ### Making List/tupels/grids So that its easire to get the image corrosponding to specific player
@@ -420,23 +425,6 @@ def position_check(bool_grid,pos):
 # In[11]:
 
 
-def Coin_pos_Check(player_active):
-    global check_3
-    keys=pygame.key.get_pressed()
-    if keys[pygame.K_RETURN]!= True and check_3 == 1:
-        check_3 = 2
-
-    if keys[pygame.K_RETURN]and check_3==0 and position_check(bool_grid[player_active-1],player_pos[player_active-1]):
-        check_3 = 1
-    
-    elif keys[pygame.K_RETURN] and check_3 == 2:
-        check_3 = 3
-    
-
-
-# In[12]:
-
-
 def player_show_part1(player_active,player_passive):
     coord_use_active = coord_grid[player_active-1][player_active-1]
     win.blit(player_image[player_active-1], (coord_use_active[0][player_pos[player_active-1][0]]+0.025*ymax, coord_use_active[1][player_pos[player_active-1][1]]+0.025*ymax))
@@ -444,7 +432,7 @@ def player_show_part1(player_active,player_passive):
     win.blit(player_image[player_passive-1], (coord_use_passive[0][player_pos[player_passive-1][0]]+0.025*ymax, coord_use_passive[1][player_pos[player_passive-1][1]]+0.025*ymax))
 
 
-# In[13]:
+# In[12]:
 
 
 def player_show_part2(player_active,player_passive):
@@ -454,7 +442,7 @@ def player_show_part2(player_active,player_passive):
     win.blit(player_image[player_passive-1], (coord_use_passive[0][player_pos[player_passive-1][0]]+0.025*ymax, coord_use_passive[1][player_pos[player_passive-1][1]]+0.025*ymax))
 
 
-# In[14]:
+# In[13]:
 
 
 def Bomb_Position(player_active,player_passive):
@@ -471,7 +459,7 @@ def Bomb_Position(player_active,player_passive):
     return()
 
 
-# In[15]:
+# In[14]:
 
 
 def Blast_Position(blast_end,player_active,player_passive):
@@ -483,7 +471,7 @@ def Blast_Position(blast_end,player_active,player_passive):
     return()
 
 
-# In[16]:
+# In[15]:
 
 
 def blast_pos_list(player_passive):
@@ -506,7 +494,7 @@ def blast_pos_list(player_passive):
     
 
 
-# In[17]:
+# In[16]:
 
 
 def Bomb_Position_end(player_active,player_passive):
@@ -522,23 +510,25 @@ def Bomb_Position_end(player_active,player_passive):
     return()
 
 
-# In[18]:
+# In[17]:
 
 
 def bomb_exit():
     global check_3
+    win.blit(state_fix, (xmax/3, (player_defence-1)*ymax/2+2*edge+0.05*ymax))
     keys=pygame.key.get_pressed()
-    if keys[pygame.K_RETURN]!= True and check_3 == 5:
+    if (keys[pygame.K_RETURN]!= True and pygame.mouse.get_pressed()[0]!=True) and check_3 == 5:
         check_3 = 6
-
-    if keys[pygame.K_RETURN]and check_3==4 :
+    if check_3 ==6:
+        win.blit(round_end, (xmax/3, (player_defence-1)*ymax/2+2*edge+0.05*ymax))
+    if (keys[pygame.K_RETURN]or mouse_pos_check(player_defence) )and check_3==4 :
         check_3 = 5
     
-    elif keys[pygame.K_RETURN] and check_3 == 6:
+    elif (keys[pygame.K_RETURN]or mouse_pos_check(player_defence) ) and check_3 == 6:
         check_3 = 7
 
 
-# In[19]:
+# In[18]:
 
 
 def Player_updated_pos(player_active):
@@ -550,7 +540,7 @@ def Player_updated_pos(player_active):
     
 
 
-# In[20]:
+# In[19]:
 
 
 def finish_term(player_active,blast_cord):
@@ -570,7 +560,7 @@ def finish_term(player_active,blast_cord):
     return()
 
 
-# In[21]:
+# In[20]:
 
 
 def health_and_text():
@@ -589,9 +579,41 @@ def health_and_text():
     
 
 
-# # Game Run
+# In[21]:
+
+
+def mouse_pos_check(player_active):
+    xm_pos,ym_pos=pygame.mouse.get_pos()
+    if pygame.mouse.get_pressed()[0] and (314/700)*ymax<xm_pos<630/700*ymax and ((130+(player_active-1)*350)/700)*ymax<ym_pos<((230+(player_active-1)*350)/700)*ymax:
+        return(True)
+        
+    
+
 
 # In[22]:
+
+
+def Coin_pos_Check(player_active):
+    global check_3
+    win.blit(state_fix, (xmax/3, (player_attack-1)*ymax/2+2*edge+0.05*ymax))
+    keys=pygame.key.get_pressed()
+    if (keys[pygame.K_RETURN]!= True and pygame.mouse.get_pressed()[0]!=True)and check_3 == 1:
+        check_3 = 2
+    if check_3 ==2:
+        win.blit(round_end, (xmax/3, (player_attack-1)*ymax/2+2*edge+0.05*ymax))
+
+
+    if (keys[pygame.K_RETURN]or mouse_pos_check(player_attack) )and check_3==0 and position_check(bool_grid[player_active-1],player_pos[player_active-1]) :
+        check_3 = 1
+    
+    elif (keys[pygame.K_RETURN]or mouse_pos_check(player_attack) ) and check_3 == 2:
+        check_3 = 3
+    
+
+
+# # Game Run
+
+# In[23]:
 
 
 player_mat= [np.zeros((4,4)),np.zeros((4,4))]
@@ -639,9 +661,10 @@ while run:
         player_show_part1(player_defence,player_attack)
         Coin_Position(player_defence)
         #Player_updated_pos(player_active)
+        win.blit(blur_half, (0, (player_attack-1)*ymax/2+5))
         Coin_pos_Check(player_defence)
         health_and_text()
-        win.blit(blur_half, (0, (player_attack-1)*ymax/2+5))
+        
         check_4=0
     if check_3 ==3:
         win.blit(blur_full, (0, 0))

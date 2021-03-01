@@ -13,6 +13,7 @@ After each turn, the attacking and defending players switch.
       ![](Quantum_Board_Run/Resource/Classical.jpg )  
       All the tick blocks are permited to move.
   - Quantum : Here the player is allowed to make a superposition of the position (denoted by the coin) keeping in mind that the current position should be in the superposition. And the player's position will be updated according to the collapse of the superposition state.  
+      Note : There should be some probability of the superposition to collapse on the initial state. 
       ![](Quantum_Board_Run/Resource/superpos.jpg )
 + Attacking Player can place the bomb only at one of the blocks on opponent's board and as there is no superposition only "X" gate is permitted to used.
 + The Bomb explodes in a way that it damages the board with a "+" sign and if the player is in that position, player will receive the damage. 

@@ -1,6 +1,6 @@
 # QGames
 
-## Quantum Board Run
+## Quantum Board Run                     (Last Update: 01-03-2021)
 
 Game consists of 2 player trying to eliminate each other.  
 In each term, first the defending player is allowed to move on the board and after that the attacking player is allowed to place a bomb on the defender's board.  

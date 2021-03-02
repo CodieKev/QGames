@@ -185,8 +185,8 @@ def Structure():
     
     for i in range(len(x_c)):
         for j in range(len(y_c1)):
-            pygame.draw.circle(win, (0,0,0), (x_c[i],y_c1[j]), 3)
-            pygame.draw.circle(win, (0,0,0), (x_c[i],y_c2[j]), 3)
+            pygame.draw.circle(win, (0,0,0), (floor(x_c[i]),floor(y_c1[j])), 3)
+            pygame.draw.circle(win, (0,0,0), (floor(x_c[i]),floor(y_c2[j])), 3)
     
     return()
 

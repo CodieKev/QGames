@@ -1,6 +1,6 @@
 # QGames
 
-## Quantum Board Run
+## Quantum Board Run                     (Last Update: 01-03-2021)
 
 Game consists of 2 player trying to eliminate each other.  
 In each term, first the defending player is allowed to move on the board and after that the attacking player is allowed to place a bomb on the defender's board.  
@@ -33,9 +33,14 @@ After each turn, the attacking and defending players switch.
   
   
 [Demo Run](Quantum_Board_Run/Resource/Quantum_Board_Run_Demo.mp4)
-  
+### Last Update (01-03-2021):
++ Added a Click Button for moving forward in game. Enter and click on that button both works fine.
+### Plans for future updates:
++ Adding a welcome screen 
++ Adding a home screen 
++ Adding single player with some AI
 
-### Its my first try. Feedback and Modifications are welcomed. Thanks for visiting.
+### Its my first try. Would love to receive Feedback, Help and Contributions. Thanks for visiting.
 ## Authors
 
 * **Rohit Prasad** - [CodieKev](https://github.com/CodieKev) - [Rohit Prasad](https://www.linkedin.com/in/rohit-prasad-codie-5845b11a9/)
